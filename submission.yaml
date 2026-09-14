@@ -49,22 +49,22 @@ submission:
                                    # optional 4th
                                    # optional 5th
 
-  tech_stack:
-    languages: 
+   tech_stack:
+    languages:
       - "Python"
       - "JavaScript"
-      - "TypeScript"                      # REQUIRED — e.g., ["Python", "TypeScript"]
-    frameworks: 
+      - "TypeScript"
+    frameworks:
       - "FastAPI"
-      - "React"                     # e.g., ["FastAPI", "React"]
-    ibm_technologies: 
-      - "IBM Bob"               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
+      - "React"
+    ibm_technologies:
+      - "IBM Bob"
     databases:
-      - "SQLite"                      # e.g., ["PostgreSQL", "Redis"]
-    other: 
+      - "SQLite"
+    other:
       - "Git"
       - "Docker"
-      - "REST API"                          # e.g., ["Docker", "GitHub Actions", "Slack API"]
+      - "REST API"
 
   what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
     We are most proud of building an integrated threat intelligence workflow that
