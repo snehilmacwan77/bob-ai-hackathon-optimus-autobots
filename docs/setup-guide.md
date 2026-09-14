@@ -6,74 +6,106 @@
 
 Before you begin, ensure you have the following installed:
 
-- [ ] [e.g., Python 3.11+]
-- [ ] [e.g., Node.js 18+]
-- [ ] [e.g., Docker Desktop]
-- [ ] [e.g., An IBM Cloud account with watsonx.ai access]
+- [x] Python 3.11+
+- [x] Node.js 18+ (with npm)
+- [x] Git
+
+> **No external API keys are required.** All threat intelligence data is synthetic.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and fill in the values:
+No mandatory environment variables are required for the demo.  
+Optional: copy `src/.env.example` to `src/.env` to customise the database path.
 
 ```bash
-cp .env.example .env
+cp src/.env.example src/.env
 ```
 
 | Variable | Description | Required |
 |---|---|---|
-| `WATSONX_API_KEY` | Your IBM watsonx.ai API key | Yes |
-| `WATSONX_PROJECT_ID` | Your watsonx.ai project ID | Yes |
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `SLACK_WEBHOOK_URL` | Slack webhook for alerts | No |
+| `DATABASE_URL` | SQLite connection string (default: `sqlite:///threat_intel.db`) | No |
+| `APP_PORT` | Backend port (default: 9000) | No |
 
 ## Installation
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/[your-org]/[your-repo].git
-cd [your-repo]
+git clone <repo-url>
+cd bob-ai-hackathon-optimus-autobots
 
 # 2. Install backend dependencies
-[your command — e.g.: pip install -r requirements.txt]
+cd src/backend
+pip install -r requirements.txt
 
-# 3. Install frontend dependencies (if applicable)
-[your command — e.g.: cd frontend && npm install]
-
-# 4. Set up the database (if applicable)
-[your command — e.g.: python manage.py migrate]
+# 3. Install frontend dependencies
+cd ../frontend
+npm install
 ```
 
 ## Running the Application
 
-```bash
-# Start the backend
-[your command — e.g.: uvicorn app.main:app --reload]
+### Backend
 
-# Start the frontend (in a separate terminal, if applicable)
-[your command — e.g.: cd frontend && npm run dev]
+```bash
+cd src/backend
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 9000
 ```
 
-The application will be available at: `http://localhost:[PORT]`
+The API will be available at: `http://localhost:9000`  
+Interactive API docs: `http://localhost:9000/docs`
+
+Demo data is **automatically seeded on first startup** — no manual step needed.
+
+### Frontend
+
+```bash
+cd src/frontend
+npm run dev
+```
+
+The UI will be available at: `http://localhost:5174`
+
+> The Vite dev server proxies `/api` requests to `http://localhost:9000` automatically.
 
 ## Running Tests
 
 ```bash
-[your test command — e.g.: pytest tests/ -v]
+cd src/backend
+python -m pytest tests/ -v
 ```
 
-## Quick Demo (Optional)
+Expected output: **18 passed** in < 2 seconds.
 
-If you have a demo script or sample data to showcase the project quickly:
+## Building for Production
 
 ```bash
-[e.g.: python demo/seed_demo_data.py]
-[e.g.: open http://localhost:8000/demo]
+# Frontend
+cd src/frontend
+npm run build
+# Output: src/frontend/dist/
+
+# Backend (serve with any WSGI/ASGI host)
+cd src/backend
+python -m uvicorn app.main:app --host 0.0.0.0 --port 9000 --workers 2
 ```
+
+## Quick Demo
+
+1. Start the backend (`uvicorn`) and frontend (`npm run dev`)
+2. Open `http://localhost:5174`
+3. The **Dashboard** loads immediately with 30 pre-seeded threat indicators and 5 incidents
+4. Navigate to **Analyze IOC** and enter:
+   - IP: `185.220.101.45` → critical Tor exit node
+   - Domain: `update.microsofft.com` → critical phishing domain
+   - Hash: `44d88612fea8a8f36de82e1278abb02f` → WannaCry ransomware
+5. Navigate to **Incidents** → click **Ransomware C2 Beacon Detected** for the full investigation view
 
 ## Troubleshooting
 
 | Issue | Solution |
 |---|---|
-| [e.g., `ModuleNotFoundError`] | [e.g., Run `pip install -r requirements.txt` again] |
-| [e.g., Database connection refused] | [e.g., Ensure PostgreSQL is running: `docker compose up db`] |
-| [e.g., watsonx.ai 401 error] | [e.g., Check `WATSONX_API_KEY` in your `.env` file] |
+| `ModuleNotFoundError` | Run `pip install -r requirements.txt` from `src/backend/` |
+| `npm ERR! Cannot find module` | Run `npm install` from `src/frontend/` |
+| Backend port already in use | Change port: `uvicorn app.main:app --port 9001` |
+| Frontend can't reach API | Ensure backend runs on port 9000; check `vite.config.ts` proxy |
+| Empty dashboard | Call `POST /api/v1/demo/seed` or restart the backend |
