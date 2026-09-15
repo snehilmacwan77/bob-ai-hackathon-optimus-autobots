@@ -1,7 +1,9 @@
 import axios from 'axios';
 import type { AnalysisResult, DashboardStats, Incident, Indicator } from '../types';
 
-const api = axios.create({ baseURL: '/api/v1' });
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '/api/v1',
+});
 
 export const getDashboard = () =>
   api.get<DashboardStats>('/dashboard').then(r => r.data);
