@@ -8,7 +8,7 @@
 | **Team Name** | optimus autobots |
 | **Track** | AI |
 | **Team Lead** | Hiren Solanki — 23dce113@charusat.edu.in |
-| **Members** | Snehil Macwan — d24dce161@charusat.edu.in; Kirtan Prajapati — d24dce156@charusat.edu.in; Samarth Bhagore — d24dce154@charusat.edu.in |
+| **Members** | Snehil Macwan; Kirtan Prajapati; Samarth Bhagore |
 
 ---
 
