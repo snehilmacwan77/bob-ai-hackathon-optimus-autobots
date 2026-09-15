@@ -1,43 +1,43 @@
-# 🚀 [Your Project Title Here]
-
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
-
+# 🚀 Threat Intelligence System
 ---
 
 ## 👥 Team
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | optimus autobots |
+| **Track** | AI |
+| **Team Lead** | Hiren Solanki — 23dce113@charusat.edu.in |
+| **Members** | Snehil Macwan — d24dce161@charusat.edu.in; Kirtan Prajapati — d24dce156@charusat.edu.in; Samarth Bhagore — d24dce154@charusat.edu.in |
 
 ---
 
 ## 🎯 Problem Statement
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
-
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+Organizations face a growing number of cybersecurity threats from malicious IPs,
+domains, URLs, phishing campaigns, malware indicators, and other sources of
+threat intelligence. Security teams need a centralized way to analyze, correlate,
+prioritize, and respond to these threats quickly.
 
 ---
 
 ## 💡 Solution
 
-> In 2–3 sentences: What did you build? How does it solve the problem above?
-
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+Threat Intelligence System is an AI-powered security platform that collects and
+analyzes threat indicators, identifies potentially malicious activity, prioritizes
+threats based on risk, and provides actionable recommendations to security teams.
+It provides a centralized dashboard for monitoring threats and supporting faster
+security decision-making.
 
 ---
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
+- **AI-powered threat analysis and risk prioritization**
+- **Threat indicator detection and correlation**
+- **Centralized cybersecurity monitoring dashboard**
+- **Threat severity scoring and explainable recommendations**
+- **Security incident investigation and response guidance**
 
 ---
 
@@ -45,11 +45,11 @@
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Languages** | Python, JavaScript, TypeScript |
+| **Frameworks** | FastAPI, React |
+| **IBM Technologies** | IBM Bob |
+| **Databases** | SQLite |
+| **Other** | Git, Docker, REST API |
 
 ---
 
@@ -76,20 +76,15 @@
 > **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+# Install the frontend and backend dependencies from the repository root
+npm install
 
-# 2. Install dependencies
-[your install command here]
-
-# 3. Configure environment
-cp .env.example .env
-# Edit .env with your values
-
-# 4. Run the project
-[your run command here]
+# Start both the Vite frontend and FastAPI backend
+npm run dev
 ```
+
+The app is available at http://localhost:5174. The API runs at http://localhost:9000
+and is proxied by Vite, so no second terminal or manual directory changes are needed.
 
 ---
 
@@ -108,14 +103,14 @@ cp .env.example .env
 
 > Be honest — judges appreciate transparency over overclaiming.
 
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
+- The system currently relies on available threat intelligence feeds and simulated data for demonstration purposes.
+- Production deployment would require additional real-time feeds and enterprise integrations.
+- Continuous model evaluation would be required for production use.
 
 ---
 
 ## 🏅 What We're Most Proud Of
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+We are most proud of building an integrated threat intelligence workflow that combines threat detection, risk prioritization, explainable analysis, and actionable security recommendations in a single platform.
 
 ---

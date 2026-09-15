@@ -2,6 +2,9 @@
   "name": "threatfusion-ui",
   "private": true,
   "version": "1.0.0",
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
