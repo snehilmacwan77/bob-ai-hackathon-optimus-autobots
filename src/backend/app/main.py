@@ -1,4 +1,6 @@
 """FastAPI application entry point for ThreatFusion AI – Threat Intelligence System."""
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -20,7 +22,12 @@ app = FastAPI(
     },
 )
 
-# CORS – allow the Vite dev server and any localhost origin
+# CORS – allow local development plus origins supplied by the deployment environment.
+extra_origins = [
+    origin.strip()
+    for origin in os.environ.get("CORS_ORIGINS", "").split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -28,6 +35,7 @@ app.add_middleware(
         "http://localhost:5174",
         "http://localhost:3000",
         "http://127.0.0.1:5173",
+        *extra_origins,
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -37,7 +45,6 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
-    import os
     init_db()
     # Auto-seed demo data on first run (skip when running under pytest)
     if os.environ.get("PYTEST_CURRENT_TEST"):
